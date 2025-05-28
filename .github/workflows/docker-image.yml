@@ -21,7 +21,7 @@ jobs:
       run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
 
     - name: Build the Docker image
-      working-directory: ./hangman_web
+      working-directory: hangman_web  # ❌ 앞에 ./ 또는 중첩된 경로 없음
       run: docker build --tag ${{ secrets.DOCKER_USER }}/hangman-app:latest .
 
     - name: Docker Push
