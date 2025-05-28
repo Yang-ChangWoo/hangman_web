@@ -11,20 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Docker Login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 
     - name: Build the Docker image
-      run: docker build -t ${{ secrets.DOCKER_USER }}/hangman-app:latest -f hangman_web/Dockerfile .
+      run: docker build -t yangcw99/hangman-app:latest .
 
     - name: Docker Push
-      run: docker push ${{ secrets.DOCKER_USER }}/hangman-app:latest
+      run: docker push yangcw99/hangman-app:latest
+
 
 
 
