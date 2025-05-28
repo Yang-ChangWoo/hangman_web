@@ -21,11 +21,11 @@ jobs:
       run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
 
     - name: Build the Docker image
-      working-directory: ./hangman_web
-      run: docker build -t ${{ secrets.DOCKER_USER }}/hangman-app:latest .
+      run: docker build -t ${{ secrets.DOCKER_USER }}/hangman-app:latest -f hangman_web/Dockerfile .
 
     - name: Docker Push
       run: docker push ${{ secrets.DOCKER_USER }}/hangman-app:latest
+
 
 
 
